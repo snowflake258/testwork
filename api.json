@@ -1,0 +1,13 @@
+{
+    "INT_source": "02",
+    "INT_recipients": ["03", "04"],
+    "money": 40.00
+}
+
+{
+    "username": "test2",
+    "email": "test2@gmail.com",
+    "password": "qwerty",
+    "INT": "09235235",
+    "account": 3000.25
+}
