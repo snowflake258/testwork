@@ -38,6 +38,10 @@ class TransferMoneySerializer(Serializer):
             raise ValidationError("Пользователя с ИНН '{}' не существует.".format(data['INT_source']))
 
         self.recipients = User.objects.filter(INT__in=data['INT_recipients'])
+
+        if self.recipients.count() == 0:
+            raise ValidationError('Не выбраны счета на которые будут переведены деньги.')
+
         for item in data['INT_recipients']:
             if not self.recipients.filter(INT=item).exists():
                 raise ValidationError("Пользователя с ИНН '{}' не существует.".format(item))

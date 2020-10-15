@@ -4,7 +4,7 @@ from api.models import User
 from api.serializers import UserSerializer, UserCreateSerializer, TransferMoneySerializer
 
 
-class UserListView(ListCreateAPIView):
+class UserView(ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -24,7 +24,7 @@ class UserListView(ListCreateAPIView):
             })
 
 
-class UserView(RetrieveUpdateAPIView):
+class UserSignleView(RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -35,12 +35,7 @@ class TransferMoneyView(APIView):
 
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response({
-                'success': True,
-                'message': 'Перевод денег выполнен успешно.'
-            })
-        else:
-            return Response({
-                'success': False,
-                'errors': serializer.errors
-            })
+        return Response({
+            'success': True,
+            'message': 'Перевод денег выполнен успешно.'
+        })
